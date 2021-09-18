@@ -1,0 +1,233 @@
+<Main>:
+    Image:
+        id: homeBG
+        size: self.size
+        source: "images/wuhuMenu.png"
+        allow_stretch: True
+        keep_ratio: False
+
+    Image:
+        id: waterBG
+        size: self.size
+        source: "images/waterBG.png"
+        allow_stretch: True
+        keep_ratio: False
+        color: 0, 0, 0, 0
+
+    Label:
+        id: title
+        font_size: root.FONT_SIZE*2.3
+        text: "Plane Mania"
+        font_name: "fonts/LeagueSpartan-Bold.otf"
+        color: 0.05, 0.3, 0.8, 1
+        pos_hint: {"center_x": 0.3, "center_y": 0.78}
+
+    Label:
+        id: subTitle
+        font_size: root.FONT_SIZE*0.6
+        text: "Alexander Shemaly Presents"
+        font_name: "fonts/Sackers-Gothic-Std-Light.ttf"
+        color:  0.05, 0.3, 0.8, 1
+        pos_hint: {"center_x": 0.3, "center_y": 0.93}
+
+    Button:
+        id: playBtn
+        font_size: root.FONT_SIZE
+        text: "Play Game"
+        font_name: "fonts/LeagueSpartan-Bold.otf"
+        background_normal: ""
+        background_color:  0.05, 0.3, 0.8, 1
+        on_press: root.playGame()
+        pos_hint: {"center_x": 0.85, "center_y": 0.7}
+        size_hint: 0.25, 0.15
+        disabled: root.homeBtnDisabled
+
+    Button:
+        id: infoBtn
+        font_size: root.FONT_SIZE
+        text: "How to Play"
+        font_name: "fonts/LeagueSpartan-Bold.otf"
+        background_normal: ""
+        background_color:  0.05, 0.3, 0.8, 1
+        on_press: root.howToPlay()
+        pos_hint: {"center_x": 0.85, "center_y": 0.45}
+        size_hint: 0.25, 0.15
+        disabled: root.homeBtnDisabled
+
+    Image:
+        id: flyingPlane
+        source: "images/planeFront1.png"
+        pos_hint: {"center_x": root.animationX, "center_y": root.animationY}
+        size_hint: 0.6, 0.6
+
+    Image:
+        id: bg
+        source: "images/wuhuBG.png"
+        allow_stretch: True
+        keep_ratio: False
+        size_hint: 1, None
+        height: root.height*3
+        pos_hint: {"center_x": 0.5, "center_y": 2*root.planeHeight-0.5}
+        color: 0, 0, 0, 0
+
+    Image:
+        id: islandOutline
+        source: "images/wuhuOutline.png"
+        allow_stretch: True
+        keep_ratio: True
+        size_hint: 0.2, 0.2
+        height: root.height*3
+        pos_hint: {"center_x": 0.5, "center_y": 2*root.planeHeight-0.5}
+        color: 0, 0, 0, 0
+
+    Image:
+        id: island
+        source: "images/wuhu.png"
+        allow_stretch: True
+        keep_ratio: True
+        size_hint: 0.2, 0.2
+        height: root.height*3
+        pos_hint: {"center_x": 0.5, "center_y": 2*root.planeHeight-0.5}
+        color: 0, 0, 0, 0
+
+    Image:
+        id: deck
+        source: "images/deck.png"
+        allow_stretch: True
+        keep_ratio: False
+        size_hint: 0.5, 0.15
+        pos_hint: {"center_x": 0.5, "center_y": root.deckHeight}
+        color: 0, 0, 0, 0
+
+    Image:
+        id: heightBar
+        source: "images/heightBar.png"
+        allow_stretch: True
+        keep_ratio: False
+        size_hint: 0.05, 0.95
+        pos_hint: {"center_x": 0.025, "center_y": 0.5}
+        color: 0, 0, 0, 0
+
+    Image:
+        id: arrowHead
+        source: "images/heightArrowhead.png"
+        allow_stretch: True
+        keep_ratio: False
+        size_hint: 0.025, 0.025*root.width/root.height
+        pos_hint: {"center_x": 0.045, "center_y": -0.95*root.planeHeight+0.975}
+        color: 0, 0, 0, 0
+
+    Image:
+        id: propeller
+        source: "images/propeller.png"
+        allow_stretch: True
+        size_hint: None, 1
+        width: root.width * root.PLANE_WIDTH
+        pos_hint: {"center_x": root.planeRelX, "center_y": root.planeRelY}
+        color: 0, 0, 0, 0
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: root.propellerAngle
+                origin: self.center
+        canvas.after:
+            PopMatrix
+
+
+    Image:
+        id: planeSprite
+        source: "images/behindEmpty.png"
+        allow_stretch: True
+        size_hint: None, 1
+        width: root.width*root.PLANE_WIDTH
+        pos_hint: {"center_x": root.planeRelX, "center_y": root.planeRelY}
+        color: 0, 0, 0, 0
+
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: root.planeAngle
+                origin: self.center
+        canvas.after:
+            PopMatrix
+
+    Image:
+        id: startImg
+        source: "images/start.png"
+        allow_stretch: True
+        size_hint: 0.4, 0.4
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        color: 0, 0, 0, 0
+
+    Image:
+        id: finishImg
+        source: "images/finish.png"
+        allow_stretch: True
+        size_hint: 0.4, 0.4
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        color: 0, 0, 0, 0
+
+    Button:
+        id: pauseBtn
+        background_color: 0, 0, 0, 0
+        on_press: root.pauseGame()
+        pos_hint: {"top": 1, "right": 1}
+        size_hint: 0.15*root.height/root.width, 0.15
+        disabled: root.inGameBtnDisabled
+        Image:
+            id: pauseImg
+            source: "images/pauseBtn.png"
+            color: 0, 0, 0, 0
+            allow_stretch: True
+            keep_ratio: False
+            size: pauseBtn.size
+            pos: pauseBtn.pos
+
+    Label:
+        id: distanceLabel
+        font_size: 0.024 * root.width
+        text: root.distanceText
+        font_name: "fonts/LeagueSpartan-Bold.otf"
+        color: 0.05, 0.3, 0.8, 0
+        pos_hint: {"center_x": 0.25, "center_y": 0.05}
+
+    Label:
+        id: scoreLabel
+        font_size: 0.024 * root.width
+        text: root.scoreText
+        font_name: "fonts/LeagueSpartan-Bold.otf"
+        color: 0.05, 0.3, 0.8, 0
+        pos_hint: {"center_x": 0.75, "center_y": 0.05}
+
+    Label:
+        id: altLabel
+        font_size: 0.024 * root.width
+        text: root.altText
+        font_name: "fonts/LeagueSpartan-Bold.otf"
+        color: 0.05, 0.3, 0.8, 0
+        pos_hint: {"center_x": 0.18, "center_y": 0.95}
+
+    Image:
+        id: youWinImg
+        source: "images/youWin.png"
+        size_hint: (1, 0.4)
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        allow_stretch: True
+        keep_ratio: False
+        color: 0, 0, 0, 0
+
+    Image:
+        id: bigPlane
+        source: "images/reflectedPlane.png"
+        pos_hint: {"center_x": root.endPlaneX, "center_y": 0.5}
+        size_hint: 0.9, 0.9
+        color: 0, 0, 0, 0
+
+    Image:
+        id: howToBG
+        size: self.size
+        source: root.howToImagePath
+        allow_stretch: True
+        keep_ratio: False
+        color: 0, 0, 0, 0
+
