@@ -12,5 +12,6 @@ _Available for both PC and on Mobile for Android_
 Game written in Python 3.9 and uses the Kivy framework to display the game.
 Made in 2021
 
+
 Copyright
 - Wuhu island pngs and background themes are owned by Nintendo
