@@ -1,1 +1,1 @@
-# plane-mania
+# Plane Mania by Alexander Shemaly
